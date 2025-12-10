@@ -1,0 +1,286 @@
+{
+  "name": "FrameSort AI Bot",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a customer service discord bot for an addon called FrameSort. \n\nRead this lua code and use it as a guide: {{ $json.data }}\n\nAlso look at this guide, and use it. \n\nWorld of Warcraft FrameSort Macro Creation Guide\nOverview\nMacros are customizable scripts that allow players to combine commands, spells, abilities and even text into a single button. This makes gameplay more efficient and personalized. FrameSort adds variables to the In-Game Macro Creator that can dynamically change based on the current needs. Below will be detailed documentation for how to create FrameSort Macros. This guide assumes you have a basic working knowledge of macros. If you do not, then please watch this video. The ONLY WoW macro guide you ever need\n\n1. FrameSort Macro Basics\nWhat is a FrameSort Macro?\nIt is a macro that uses custom FrameSort Variables\nBenefits of Using Macros:\nIt can make targeting and ability usage much more specific which if done properly will lead to proper optimization of targeting and abilities. \nMacro Limitations:\nOutside of a character limit there aren't that many limitations. \n\n2. Creating a FrameSort Macro\nTake a basic macro like below\nExample Basic Macro:\n#Showtooltip --What this does is find the spell’s tooltip and add it to the macro.\n/cast [@arena1] Polymorph --This will cast Polymorph at the player in Arena1\n\nNow let's make a FrameSort Macro that will polymorph the healer. \n#Showtooltip --What this does is find the spell’s tooltip and add it to the macro.\n#FrameSort EnemyHealer -- What this does is enables the FrameSort Variables, and selects the Variable EnemyHealer to target the enemy healer regardless of which arena frame they are in. .\n/cast [@none,exists] Polymorph --This will cast Polymorph at the EnemyHealer whenever it finds an EnemyHealer Frame. The macro will dynamically update the @none with the correct frame number of the EnemyHealer.\n\n\n3. FrameSort Macro Syntax and Commands\nBasic Commands:\nCommand\nPurpose\nExample\n/cast\nCasts a spell or ability\n/cast Fireball\n/use\nUses an item\n/use Healthstone\n/target\nTargets an entity\n/target EnemyName\n/say\nSends a message to the say chat\n/say Hello, world!\n\n\n\n\nFrameSort Variables:\nVariable\nPurpose\nOptional Shortened\nFrame1, Frame 2, Frame 3 etc.\nTargets Frames after being sorted in your group.\nF1, F2, F3 etc.\nFrame1Pet,Frame2Pet,Frame3Pet etc.\nTargets Pet Frames after being sorted in your group.\nF1P, F2P, F3P etc.\nBottomFrame\nTargets the Bottom Frame in your raid frames.\nBF\nTank\nWill target the first Tank in your group.\nT\n\n\nDPS\nWill target the first DPS in your group it can target you if you are the dps. .  \nD\nHealer\nWill target the first Healer in your group.\nH\nTankTarget\nTargets the target of your Tank\n\n\nHealerTarget\nTargets the target of your Healer\n\n\nFrame1Target, Frame2Target, Frame3Target, etc. \nTargets the Target of a specific Party Member\n\n\nOtherDPS\nTargets First DPS that is not you. \nOD\nEnemyFrame1, EnemyFrame2, EnemyFrame3 etc.\nTargets Enemy frames, can be used to replace Arena123 Macros \nEF1, EF2, EF3 etc.\nEnemyFrame1Pet, EnemyFrame2Pet, EnemyFrame3Pet etc.\nCan be used to Target Enemy Pets. \nEF1P, EF2P, EF3P etc.\nEnemyTank\nWill target the Enemy Tank\nET\nEnemyHealer\nWill target the Enemy Healer\nEH\nEnemyDPS\nWill Target the Enemy DPS\nED\nSomethingTarget\nThe target of \"something\", e.g. OtherDpsTarget = the target of OtherDPS, TankTG = the target of tank\nSomethingTG\nBFM1, BFM2, BFM3, BFM4\nBottom Frame Minus 1/2/3\nBFM1, BFM2, BFM3, BFM4\n\n\n\n4. How FrameSort Macros Work.\nLet’s go back to our original Macro.\n#showtooltip \n#FrameSort EnemyHealer\n/cast [@none,exists] Polymorph\nExplanation: Casts Polymorph on EnemyHealer if it exists.\nIt works by reading the EnemyHealer Variable and dynamically updating the None to the correct Frame or EnemyFrame that the enemy Healer Belongs to, So when you get into a game its gonna change the macro to look something like this. \n#showtooltip \n#FrameSort EnemyHealer\n/cast [@EnemyFrame1,exists] Polymorph\n\n5. Advanced Macros\nCombining Multiple Variables:\n#showtooltip \n#FrameSort Healer Tank\n/cast [@none,exists] [@none,exists]Cleanse Toxins\n\nWhat this macro will do is update when a healer or a tank is available to the correct frame they belong to. \n\n#showtooltip \n#FrameSort Healer Tank\n/cast [@Frame1,exists] [@Frame2,exists]Cleanse Toxins\n\nThen it will cast on the first available Variable. So if a healer is present, then it will cast Cleanse Toxins on the healer but if there was no healer available then it would cast on the tank. Also the macro would look like this if no healer was available and only a tank in your group. \n\n#showtooltip \n#FrameSort Healer Tank\n/cast [@none,exists] [@Frame2,exists]Cleanse Toxins\n\nIt works kinda like this, With the first variable replacing the first @none and the 2nd ones replacing the 2nd.\n\nFrameSort Variables with Default Variables :\nCombining Multiple Variables:\n#showtooltip \n#FrameSort X Healer\n/cast [@Focus,exists] [@none,exists]Cleanse Toxins\n\nUsing the X variable basically tells the macro to not look for a FrameSortVariable and instead use the one listed. \n\n\n\n\n6. Troubleshooting Macros\nFrameSort Discord: Ask around in the discord its filled with tons of people that can help you. \n\n7. Example Macros\nEnemy Healer Kick:\n#showtooltip \n#FrameSort EnemyHealer\n/cast [@none,exists]Kick\n\nAbsorb Trap Macro:\n#showtooltip \n#FrameSort Healer\n/cancelform\n/cast [@none,exists]Wild Charge\n\n\nShadowstep Kick Macro\n#showtooltip\n#FrameSort EnemyHealer EnemyHealer\n/cast [@none,exists] Shadowstep\n/cast [@none,exists] Kick\n\n\n\n\n\nOutro\nThanks for reading the FrameSort Macro Guide. Hope everyone can start using this to help them create macros. \n\n\nHere is the question the person asked. \n{{ $('Discord Trigger').item.json.content }}\n\nMake sure you simplify the macro using FrameSort's multiple variables. \n\nDO NOT ANSWER ANY QUESTIONS THAT ARENT RELATED TO FRAMESORT.",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -400,
+        -336
+      ],
+      "id": "5e71a915-938d-4761-bde6-75be47aa3cc9",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-chat-latest",
+          "mode": "list",
+          "cachedResultName": "gpt-5-chat-latest"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -416,
+        -160
+      ],
+      "id": "d2530ac1-e5cd-41da-9e1b-e7fabbfabd28",
+      "name": "ChatGPT",
+      "credentials": {
+        "openAiApi": {
+          "id": "3yKH5ICDcTjBHzvr",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1143363398319480842",
+          "mode": "list",
+          "cachedResultName": "FrameSort",
+          "cachedResultUrl": "https://discord.com/channels/1143363398319480842"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1447112758003896441",
+          "mode": "list",
+          "cachedResultName": "macro-bot-channel",
+          "cachedResultUrl": "https://discord.com/channels/1143363398319480842/1447112758003896441"
+        },
+        "content": "=<@{{ $('Discord Trigger').item.json.authorId }}>\n\n{{ $json.text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        -48,
+        -336
+      ],
+      "id": "ab56d68a-f6c3-456a-b3c8-2f118f4d47fd",
+      "name": "Send a message",
+      "webhookId": "173c9503-45a6-4395-aa77-5dbcf8ff08e5",
+      "credentials": {
+        "discordBotApi": {
+          "id": "K4zAq1VgVW7oNqJ9",
+          "name": "FrameSort Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/Verubato/framesort/refs/heads/main/src/Modules/Macro/Parser.lua",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -656,
+        -352
+      ],
+      "id": "fc70c992-ce3a-445d-931d-091c086ed8f1",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "guildIds": [
+          "1143363398319480842"
+        ],
+        "channelIds": [
+          "1447112758003896441"
+        ],
+        "pattern": "botMention",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-discord-trigger.discordTrigger",
+      "typeVersion": 1,
+      "position": [
+        -832,
+        -352
+      ],
+      "id": "d16041df-65e6-4560-8dc6-fdaa672047bf",
+      "name": "Discord Trigger",
+      "credentials": {
+        "discordBotTriggerApi": {
+          "id": "SCxQVG1ubahLPMUT",
+          "name": "Discord Bot Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "guildIds": [
+          "1143363398319480842"
+        ],
+        "channelIds": [
+          "1143363398864744600"
+        ],
+        "pattern": "botMention",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-discord-trigger.discordTrigger",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        32
+      ],
+      "id": "52987c53-5ff1-4c7d-9677-f71f91fe623a",
+      "name": "Discord Trigger1",
+      "credentials": {
+        "discordBotTriggerApi": {
+          "id": "SCxQVG1ubahLPMUT",
+          "name": "Discord Bot Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1143363398319480842",
+          "mode": "list",
+          "cachedResultName": "FrameSort",
+          "cachedResultUrl": "https://discord.com/channels/1143363398319480842"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1143363398864744600",
+          "mode": "list",
+          "cachedResultName": "general",
+          "cachedResultUrl": "https://discord.com/channels/1143363398319480842/1143363398864744600"
+        },
+        "content": "=\nSorry <@{{ $json.authorId }}>, I've been configured not to respond here to avoid spam. \n\nHead on over to the <#1447112758003896441> and I'll help you there!\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        32
+      ],
+      "id": "64466463-0184-4560-9fd5-62b1b19040fe",
+      "name": "Send a message1",
+      "webhookId": "173c9503-45a6-4395-aa77-5dbcf8ff08e5",
+      "credentials": {
+        "discordBotApi": {
+          "id": "K4zAq1VgVW7oNqJ9",
+          "name": "FrameSort Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Wrong Channel Message\n This sends a message whenever someone @'s the bot in #general instead #macro-bot-channel",
+        "height": 176
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -752,
+        0
+      ],
+      "id": "f206fc91-c786-4c9d-987e-e8bd3fad689c",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Main Macro Bot Functionality \n\nThis bot when mentioned in #Macro-bot-channel will reply answering the persons question. "
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1120,
+        -368
+      ],
+      "id": "95029b07-35cd-4702-b85b-d71e4945191a",
+      "name": "Sticky Note1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "ChatGPT": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1d6487e6-cb7c-431b-88ef-c524a13f3c1b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0cd80abcabe0717ba8eb20c7e3e26fe64a46977d8a24f1bd92601a932b3ec2ad"
+  },
+  "id": "kTLDBxCVVd5x3BdX",
+  "tags": [
+    {
+      "updatedAt": "2025-12-07T05:35:38.991Z",
+      "createdAt": "2025-12-07T05:35:32.613Z",
+      "id": "hEL9TvC7rPvi6NE3",
+      "name": "FrameSort"
+    }
+  ]
+}
