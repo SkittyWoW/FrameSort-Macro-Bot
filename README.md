@@ -1,4 +1,4 @@
-## 🌸 FrameSort Macro Bot - n8n Workflow 🌸
+## FrameSort Macro Bot - n8n Workflow 
 *A cute lil' AI Assistant for the FrameSort Addon Discord*
 
 
@@ -8,7 +8,7 @@ Think of it as a **Macro Generator Bot** that never sleeps.
 
 ---
 
-## ⭐ What This Bot Does ⭐
+## What This Bot Does
 
 The FrameSort Macro Bot:
 - **Monitors Mentions** in the `#macro-bot-channel`
@@ -22,7 +22,8 @@ The FrameSort Macro Bot:
 Basically: Someone can ask, How do i sheep a healer, and this bot spits out the macro in the proper format. 
 
 ---
-## 🎓 Features Breakdown 🎓
+
+## Features Breakdown 
 
 ### **1. Discord Trigger (#macro-bot-channel)**
 Listens for bot mentions inside of the designated text channel.
@@ -63,7 +64,7 @@ If someone mentions the bot in `#general`, it send a cute redirect message inste
    - Discord Trigger credentials  
    - OpenAI API key  
 
-And boom — you're live. 💅✨
+And boom — you're live. 
 
 ---
 
