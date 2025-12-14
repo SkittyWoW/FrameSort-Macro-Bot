@@ -43,28 +43,12 @@ Sends the user question + parser code + macro guide to the model with strict rul
 ### **4. ChatGPT Node**
 Powered by `GPT 5` using openai API key. 
 
-
 ### **4. Discord Reply**
 Replies directly in the macro channel, tagging the user and giving a clean simplified macro answer.
 
 ### **6. Wrong Channel Handler**
-If someone mentions the bot in `#general`, it send a cute redirect message instead of spamming anyone.
+If someone mentions the bot in any other channel, it send a cute redirect message instead of spamming anyone.
 
-
----
-
-## How to Import into n8n
-
-1. Open **n8n**
-2. Go to **Workflows**
-3. Click **Import**
-4. Upload `FrameSort AI Bot.json`
-5. Add your:
-   - Discord Bot API credentials  
-   - Discord Trigger credentials  
-   - OpenAI API key  
-
-And boom — you're live. 
 
 ---
 
@@ -77,12 +61,10 @@ The FrameSort community constantly asks for macro help, so this bot:
 - Relies on official docs + parser logic  
 - Keeps the Discord clean  
 
-And yes… it’s also cute. And we love that.
-
 ---
 
 ##  Credits
 
 - **Verz** FrameSort Addon Creator   
-- **Sophia** for building this whole iconic workflow  
+- **Sophia** for creating this workflow bot
 
